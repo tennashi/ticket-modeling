@@ -2,17 +2,17 @@ package model
 
 import "time"
 
-type student struct {
+type Student struct {
 	division StudentDivision
 }
 
-func NewStudent(division StudentDivision) Pricer {
-	return student{
+func NewStudent(division StudentDivision) Student {
+	return Student{
 		division: division,
 	}
 }
 
-func (s student) Price(date time.Time) uint {
+func (s Student) Price(date time.Time) uint {
 	switch s.division {
 	case StudentUniversity:
 		return s.univ(date)
@@ -23,7 +23,7 @@ func (s student) Price(date time.Time) uint {
 	}
 }
 
-func (s student) univ(date time.Time) uint {
+func (s Student) univ(date time.Time) uint {
 	if isCinemaDay(date) {
 		return 1100
 	}
@@ -33,6 +33,6 @@ func (s student) univ(date time.Time) uint {
 	return 1500
 }
 
-func (s student) other(date time.Time) uint {
+func (s Student) other(date time.Time) uint {
 	return 1000
 }

@@ -2,17 +2,17 @@ package model
 
 import "time"
 
-type handicapped struct {
+type Handicapped struct {
 	division StudentDivision
 }
 
-func NewHandicapped(division StudentDivision) Pricer {
-	return handicapped{
+func NewHandicapped(division StudentDivision) Handicapped {
+	return Handicapped{
 		division: division,
 	}
 }
 
-func (h handicapped) Price(date time.Time) uint {
+func (h Handicapped) Price(date time.Time) uint {
 	switch h.division {
 	case StudentNotStudent, StudentUniversity:
 		return h.univAndOver(date)
@@ -21,10 +21,10 @@ func (h handicapped) Price(date time.Time) uint {
 	}
 }
 
-func (h handicapped) univAndOver(date time.Time) uint {
+func (h Handicapped) univAndOver(date time.Time) uint {
 	return 1000
 }
 
-func (h handicapped) other(date time.Time) uint {
+func (h Handicapped) other(date time.Time) uint {
 	return 900
 }

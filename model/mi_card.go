@@ -2,13 +2,13 @@ package model
 
 import "time"
 
-type miCard struct{}
+type MICard struct{}
 
-func NewMICard() Pricer {
-	return miCard{}
+func NewMICard() MICard {
+	return MICard{}
 }
 
-func (m miCard) Price(date time.Time) uint {
+func (m MICard) Price(date time.Time) uint {
 	if isLate(date) {
 		return 1300
 	}
